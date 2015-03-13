@@ -1,0 +1,19 @@
+With the various available file systems available to the users, it only 
+makes sense to use a configuration for the appropriate file system, 
+block device, and partition type.  I have only built this for support 
+with GPT (not standard PC Partitioning) and ext4 (which includes the 
+ext2/ext3 emulation capabilities in my configuration)
+
+On slackware you can use mkinitrd to allow this kernel to boot properly 
+for your filesystem / partition type. 
+
+I.e. if you want to use the ext file systems. You can run this commmand:
+
+mkinitrd -c -k 4.0.0-rc3-godmachine81 -m ext4 -f ext4 -r /dev/sdb1
+
+The above example issues the mkinitrd command specifying the 
+4.0.0-rc3-godmachine81 kernel, using the ext4 file system (-m ext4), as 
+well as using the ext4 file system for the root partition (-f ext4 -r 
+/dev/sdb1)  where /dev/sdb1 is the root partition. 
+
+
