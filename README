@@ -1,0 +1,78 @@
+Linux Kernel Version 4.x.x (updated along side mainline beginning at 
+4.0 RC3) - Customized specifically for Hewlett Packard Pavilion 
+DV6-6106nr Notebook/Laptop.  
+
+Please notice that this kernel configuration and/or any binary files 
+contained within this repository are AS-IS and should only be used by 
+people who know how to properly modify a kernel configuration, compile 
+the kernel and modules, and install it applying necessary changes to the 
+bootloader.  Again this kernel is made specifically FOR the HP 
+DV6-6106nr Notebook/Laptop.  Use at your own risk!
+
+This has only been tested and verified stable on the above mentioned 
+platform.  Advanced developers / hackers may be able to use this same 
+kernel configuration / binary /initrd with similar notebook motherboards 
+/ cpus.
+
+This is specifically optimized for the AMD A8 Series Llano socket FS1.
+
+Test machine specs:
+
+HP-DV6 6106nr
+8GB 1600mhz Gskill value ram
+500GB HDD (sata atiixp chipset)
+AMD A8-3550MX 2.0ghz/2.4ghz (stock/boost)  Kernel Provides 2.0ghz - 
+2.7ghz stable overclock on all 4 cores.
+ATI/AMD Radeon HD 6620G APU (radeon open source driver)
+Sensors - k10temp (apu/cpu thermal)
+HDA_Intel Audio (IDT/Sigmatel Codec) (verified all input/output controls 
+working)
+HP TruVision HD Video Camera - UVC (verified working)
+Realtek RTL8111/8168 PCI Express Gigabit Ethernet controller
+Ralink corp. RT5390 Wireless 802.11n 1T/1R PCIe (working firmware 
+built-in)
+
+
+*Radeon driver is the only one compiled as module that is a permanent 
+device on the system - This was purposely done for those who would 
+rather use fglrx/catalyst proprietary drivers.  You may blacklist the 
+radeon module to prevent conflicts.
+
+*Default CPU governor is set to userspace to allow optimal performance / 
+efficiency controlled from userland instead of kernel.
+
+*SLUB Memory Allocator
+
+*I/O Scheduler(s) - Deadline (default) & NOOP
+
+*Autogroup Scheduler - guaranteed to increase your cpu / memory 
+performance
+
+*CPU Turbo/Boost Enabled by default  - Screenshot here is showing 2.5 - 
+2.68 ghz average CPU frequencies: 
+http://www.zimagez.com/zimage/screenshot2015-03-1315-18-27.php   
+(again cpu is only rated 2.0 ghz with 
+turbo boost to 2.4ghz.. this is adding an extra 100-300mhz per core 
+while retaining minimal temps)
+
+*CPU PCC Clock / Voltage Control with default governor Userspace (New)  
+Controls Voltage / Freq based on temperature and processor demand. 
+Basically removes restrictons and governs the processor states very 
+efficiently to achieve optimal performance gain while keeping processor 
+at coolest possible temp for the work load.  Very nice..
+
+
+
+**TODO**
+
+*Patch for PF-kernel / ck sources
+
+*Add support for BFQ IO Scheduler
+
+*Add Support for TuxOnIce
+
+*Add support for Brain Fuck Scheduler
+
+*Optimize GCC compiler for post-build kernel performance. 
+
+*Add support for RT kernel.  For use with studio editing machines 
